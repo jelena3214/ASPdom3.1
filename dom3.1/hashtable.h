@@ -12,6 +12,7 @@ using namespace std;
 
 //VIRTUALNI DESTRUKTOR, KOPIRAJUCI PREMESTAJUCI??
 //CUVATI STUDENTE U TABELI ILI ODVOJITI KLJUC I INFO?
+//Testiraj sve
 
 class HashTable {
 	QuadraticHashing collisionFunction;

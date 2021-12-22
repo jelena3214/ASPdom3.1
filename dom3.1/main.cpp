@@ -7,6 +7,9 @@ int main() {
 	s1 += "19S51YP2";
 	ht.insertKey(s1);
 	cout << ht <<endl;
-	ht.deleteKey(20190727);
-	cout << ht << endl;
+	cout << *ht.findKey(20190727);
+	//ht.deleteKey(20190727);
+	ht.clear();
+	if(ht.findKey(20190727))cout << *ht.findKey(20190727);
+	cout << ht.keyCount(); 
  }

@@ -13,7 +13,7 @@ Student* HashTable::findKey(long index)
 		if (table[position].empty())return nullptr;
 
 		for (int j = 0; j < baket; j++) {
-			if (table[position][j]->st->indeks == index)
+			if (table[position][j]->key == index)
 				return table[position][j]->st;
 		}
 	}
@@ -60,7 +60,7 @@ bool HashTable::deleteKey(long index)
 		if (table[position].empty())return false;
 
 		for (int j = 0; j < baket; j++) {
-			if (table[position][j]->st->indeks == index) {
+			if (table[position][j]->key == index) {
 				table[position][j]->key = -1;
 				table[position][j]->st = nullptr;
 				return true;
@@ -115,7 +115,7 @@ int HashTable::keysInPlace(int i)
 {
 	int num = 0;
 	for (int s = 0; s < baket; s++) {
-		if (table[i][s]->key != -1 && table[i][s] != 0)num++;
+		if ((table[i][s]->key != -1) && (table[i][s]->key != 0))num++;
 	}
 	return num;
 }
