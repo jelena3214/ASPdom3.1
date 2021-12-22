@@ -1,5 +1,5 @@
 #include "hashtable.h"
-
+//ENUM
 Student* HashTable::findKey(long index)
 {
 	int position = 0, attempt = 0, addr, secondAdr = 0;
@@ -7,8 +7,8 @@ Student* HashTable::findKey(long index)
 	for (int i = 0; i < size; i++) {
 
 		addr = getAdr(index);
-		if (!secondAdr)position = addr;
-		else position = collisionFunction.getAdress(0, addr, attempt, size), secondAdr = 1;
+		if (!secondAdr  && attempt < 2)position = addr;
+		else position = collisionFunction->getAdress(0, addr, attempt-1, size), secondAdr = 1;
 		attempt++;
 		if (table[position].empty())return nullptr;
 
@@ -22,14 +22,14 @@ Student* HashTable::findKey(long index)
 
 bool HashTable::insertKey(Student& st)
 {
-	int position = 0, attempt = 0, addr, secondAdr = 0;
+	int position = 0, attempt = 1, addr, secondAdr = 0;
 	long index = st.indeks;
 
 	for (int i = 0; i < size; i++) {
 
 		addr = getAdr(index);
-		if (!secondAdr)position = addr;
-		else position = collisionFunction.getAdress(0, addr, attempt, size), secondAdr = 1;
+		if (!secondAdr && attempt < 2)position = addr;
+		else position = collisionFunction->getAdress(0, addr, attempt - 1, size), secondAdr = 1;
 		attempt++;
 
 		for (int j = 0; j < baket; j++) { //za umetanje vec postojeceg kljuca
@@ -54,8 +54,8 @@ bool HashTable::deleteKey(long index)
 	for (int i = 0; i < size; i++) {
 
 		addr = getAdr(index);
-		if (!secondAdr)position = addr;
-		else position = collisionFunction.getAdress(0, addr, attempt, size), secondAdr = 1;
+		if (!secondAdr && attempt < 2)position = addr;
+		else position = collisionFunction->getAdress(0, addr, attempt-1, size), secondAdr = 1;
 		attempt++;
 		if (table[position].empty())return false;
 
@@ -75,6 +75,7 @@ void HashTable::clear()
 	for (int i = 0; i < size; i++) { //sve ih stavlja na empty
 		for (int j = 0; j < baket; j++) {
 			table[i][j]->key = 0;
+			table[i][j]->st = nullptr;
 		}
 	}
 }

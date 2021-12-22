@@ -15,7 +15,7 @@ using namespace std;
 //Testiraj sve
 
 class HashTable {
-	QuadraticHashing collisionFunction;
+	AdressFunction *collisionFunction;
 	int size;
 	int baket;
 	int p; //p bita kljuca
@@ -34,7 +34,7 @@ class HashTable {
 	int keysInPlace(int i);
 
 public:
-	HashTable(int s, int b, int pp, int c) : size(s), baket(b), p(pp), collisionFunction(c) {
+	HashTable(int s, int b, int pp, AdressFunction* addressFunction) : size(s), baket(b), p(pp), collisionFunction(addressFunction) {
 		for (int i = 0; i < size; i++) {
 			vector<Elem*> vec;
 			for (int j = 0; j < baket; j++) {
