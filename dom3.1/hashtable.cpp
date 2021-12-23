@@ -10,7 +10,7 @@ Student* HashTable::findKey(long index)
 		if (!secondAdr  && attempt < 2)position = addr;
 		else position = collisionFunction->getAdress(0, addr, attempt-1, size), secondAdr = 1;
 		attempt++;
-		if (table[position].empty())return nullptr;
+		if (keysInPlace(position) == 0)return nullptr;
 
 		for (int j = 0; j < baket; j++) {
 			if (table[position][j]->key == index)
@@ -91,7 +91,7 @@ int HashTable::keyCount()
 
 int HashTable::tableSize()
 {
-	return size;
+	return size*baket;
 }
 
 ostream& operator<<(ostream& os, const HashTable& ht)
