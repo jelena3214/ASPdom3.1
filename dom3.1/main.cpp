@@ -1,7 +1,49 @@
 #include "hashtable.h"
+#include <fstream>
+#include <sstream>
+//PROVERI ZA USLOV INSERTOVANJA I DELETE I TO DOKLE DA IDE size*baket???
+void data(HashTable *ht) {
+	ifstream MyReadFile;
+	MyReadFile.open("students_50.csv");
+	Student* st = nullptr;
+	string key, line;
+	getline(MyReadFile, key);
+	vector<string> elems;
+	while (getline(MyReadFile, line)) {
+		stringstream ss(line);
+		while (ss.good()) {
+			string substring;
+			getline(ss, substring, ',');
+			elems.push_back(substring);
+		}
+		st = new Student(stoi(elems[0]), elems[1], "");
+		elems.erase(elems.begin() + 0);
+		elems.erase(elems.begin() + 0);
+		while (!elems.empty()) {
+			stringstream ss(elems[0]);
+			while (ss.good()) {
+				string substring;
+				getline(ss, substring, ' ');
+				if(!substring.empty())*st += substring;
+			}
+			elems.erase(elems.begin() + 0);
+		}
+		int k = ht->keyCount();
+		cout << endl << k << endl;
+		ht->insertKey(*st);
+	}
+
+	MyReadFile.close();
+}
 
 int main() {
-	HashTable* ht = nullptr;
+
+	QuadraticHashing* qh = new QuadraticHashing(1);
+	HashTable ht(25, 2, 2, qh);
+
+	data(&ht);
+	cout << ht;
+	/*HashTable* ht = nullptr;
 	QuadraticHashing* qh = nullptr;
 	Student* st = nullptr;
 	while (true) {
@@ -101,7 +143,7 @@ int main() {
 			exit(0);
 		}
 	}
-	/*QuadraticHashing* qh = new QuadraticHashing(1);
+	QuadraticHashing* qh = new QuadraticHashing(1);
 	HashTable ht(10, 2, 2, qh);
 	Student s1(402, "Nikola", "Rakonjac");
 	s1 += "13S111PP2";

@@ -4,7 +4,7 @@ Student* HashTable::findKey(long index)
 {
 	int position = 0, attempt = 0, addr, secondAdr = 0;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size * baket; i++) {
 
 		addr = getAdr(index);
 		if (!secondAdr  && attempt < 2)position = addr;
@@ -25,7 +25,9 @@ bool HashTable::insertKey(Student& st)
 	int position = 0, attempt = 1, addr, secondAdr = 0;
 	long index = st.indeks;
 
-	for (int i = 0; i < size; i++) {
+	if (keyCount() == size * baket)return false;
+
+	for (int i = 0; i < size*baket; i++) {
 
 		addr = getAdr(index);
 		if (!secondAdr && attempt < 2)position = addr;
@@ -51,7 +53,7 @@ bool HashTable::deleteKey(long index)
 {
 	int position = 0, attempt = 0, addr, secondAdr = 0;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size * baket; i++) {
 
 		addr = getAdr(index);
 		if (!secondAdr && attempt < 2)position = addr;

@@ -7,7 +7,7 @@ class QuadraticHashing :public AdressFunction{
 public:
 	QuadraticHashing(int cc) :c(cc) {};
 	int getAdress(long key, int adress, int attempt, int size) override {
-		return adress + c * attempt * attempt;
+		return (adress + c * attempt * attempt)%size;
 	}
 	~QuadraticHashing() {};
 };
