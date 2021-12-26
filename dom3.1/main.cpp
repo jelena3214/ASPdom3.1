@@ -38,12 +38,12 @@ void data(HashTable *ht) {
 
 int main() {
 
-	QuadraticHashing* qh = new QuadraticHashing(1);
+	/*QuadraticHashing* qh = new QuadraticHashing(1);
 	HashTable ht(25, 2, 2, qh);
 
 	data(&ht);
-	cout << ht;
-	/*HashTable* ht = nullptr;
+	cout << ht;*/
+	HashTable* ht = nullptr;
 	QuadraticHashing* qh = nullptr;
 	Student* st = nullptr;
 	while (true) {
@@ -134,16 +134,21 @@ int main() {
 			cout << "Unesite indeks studenta kome zelite da dodate predmet\n";
 			cin >> indeks;
 			Student* s = ht->findKey(indeks);
-			cout << "Unesite sifru predmeta \n";
-			string sifra;
-			cin >> sifra;
-			*s += sifra;
+			if (s != nullptr) {
+				cout << "Unesite sifru predmeta \n";
+				string sifra;
+				cin >> sifra;
+				*s += sifra;
+			}
+			else {
+				cout << "Ne postoji student u tabeli\n";
+			}
 		}
 		if (choice == 13) {
 			exit(0);
 		}
 	}
-	QuadraticHashing* qh = new QuadraticHashing(1);
+	/*QuadraticHashing* qh = new QuadraticHashing(1);
 	HashTable ht(10, 2, 2, qh);
 	Student s1(402, "Nikola", "Rakonjac");
 	s1 += "13S111PP2";
