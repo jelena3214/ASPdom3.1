@@ -38,12 +38,12 @@ void data(HashTable *ht) {
 
 int main() {
 
-	/*QuadraticHashing* qh = new QuadraticHashing(1);
+	QuadraticHashing* qh = new QuadraticHashing(1);
 	HashTable ht(25, 2, 2, qh);
 
 	data(&ht);
-	cout << ht;*/
-	HashTable* ht = nullptr;
+	cout << ht;
+	/*HashTable* ht = nullptr;
 	QuadraticHashing* qh = nullptr;
 	Student* st = nullptr;
 	while (true) {

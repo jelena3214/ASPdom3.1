@@ -3,7 +3,7 @@
 Student* HashTable::findKey(long index)
 {
 	int position = 0, attempt = 0, addr, secondAdr = 0;
-	addr = getAdr(index);
+	addr = getAdr(index) % size;
 	for (int i = 0; i < size * baket; i++) {
 		if (!secondAdr  && attempt < 2)position = addr;
 		else position = collisionFunction->getAdress(0, addr, attempt-1, size), secondAdr = 1;
@@ -24,7 +24,7 @@ bool HashTable::insertKey(Student& st)
 	long index = st.indeks;
 	if (keyCount() == size * baket)return false;
 
-	addr = getAdr(index);
+	addr = getAdr(index) % size;
 
 	for (int i = 0; i < size; i++) {
 		if (!secondAdr && attempt < 2)position = addr;
@@ -49,7 +49,7 @@ bool HashTable::insertKey(Student& st)
 bool HashTable::deleteKey(long index)
 {
 	int position = 0, attempt = 0, addr, secondAdr = 0;
-	addr = getAdr(index);
+	addr = getAdr(index) % size;
 	for (int i = 0; i < size * baket; i++) {
 		if (!secondAdr && attempt < 2)position = addr;
 		else position = collisionFunction->getAdress(0, addr, attempt-1, size), secondAdr = 1;
