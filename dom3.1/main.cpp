@@ -1,7 +1,7 @@
 #include "hashtable.h"
 #include <fstream>
 #include <sstream>
-//PROVERI ZA USLOV INSERTOVANJA I DELETE I TO DOKLE DA IDE size*baket???
+
 void data(HashTable *ht) {
 	ifstream MyReadFile;
 	MyReadFile.open("students_50.csv");
@@ -38,12 +38,13 @@ void data(HashTable *ht) {
 
 int main() {
 
-	QuadraticHashing* qh = new QuadraticHashing(1);
-	HashTable ht(25, 2, 2, qh);
+	/*QuadraticHashing* qh = new QuadraticHashing(1);
+	HashTable ht(1, 6, qh);
 
 	data(&ht);
 	cout << ht;
-	/*HashTable* ht = nullptr;
+	cout << ht.keyCount();*/
+	HashTable* ht = nullptr;
 	QuadraticHashing* qh = nullptr;
 	Student* st = nullptr;
 	while (true) {
@@ -68,9 +69,7 @@ int main() {
 		
 
 		if (choice == 1) {
-			int velicina, baket, p, c;
-			cout << "Unesite velicinu tabele \n";
-			cin >> velicina;
+			int baket, p, c;
 			cout << "Unesite velicinu baketa \n ";
 			cin >> baket;
 			cout << "Unesite p \n ";
@@ -78,7 +77,7 @@ int main() {
 			cout << "Unesite c \n ";
 			cin >> c;
 			qh = new QuadraticHashing(c);
-			ht = new HashTable(velicina, baket, p, qh);
+			ht = new HashTable(baket, p, qh);
 		}
 		if (choice == 2) {
 			int indeks;

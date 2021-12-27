@@ -34,7 +34,8 @@ class HashTable {
 	int keysInPlace(int i);
 
 public:
-	HashTable(int s, int b, int pp, AdressFunction* addressFunction) : size(s), baket(b), p(pp), collisionFunction(addressFunction) {
+	HashTable(int b, int pp, AdressFunction* addressFunction) : baket(b), p(pp), collisionFunction(addressFunction) {
+		size = pow(2, p);
 		for (int i = 0; i < size; i++) {
 			vector<Elem*> vec;
 			for (int j = 0; j < baket; j++) {
